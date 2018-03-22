@@ -1,8 +1,8 @@
 package com.denisimusit.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +31,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
 //        используется значение false.
 
 
-                View rootView =
+        View rootView =
                 inflater.inflate(R.layout.fragment1, container, false);
 
         Button button1 = (Button) rootView.findViewById(R.id.button1);
@@ -50,6 +50,9 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         int buttonIndex = translateIdToIndex(view.getId());
+
+        OnSelectedButtonListener listener = (OnSelectedButtonListener)  getActivity();
+        listener.onButtonSelected(buttonIndex);
 
         // Временный код для получения индекса нажатой кнопки
         Toast.makeText(getActivity(), String.valueOf(buttonIndex),
@@ -70,5 +73,10 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
                 break;
         }
         return index;
+    }
+
+    // интерфейс для передачи информацыии активности
+    public interface OnSelectedButtonListener {
+        void onButtonSelected(int buttonIndex);
     }
 }
