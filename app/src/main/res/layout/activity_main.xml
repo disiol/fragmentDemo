@@ -20,11 +20,4 @@
         android:layout_weight="1"
         tools:layout="@layout/fragment1" />
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.denisimusit.fragment.Fragment2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:layout="@layout/fragment2" />
 </LinearLayout>

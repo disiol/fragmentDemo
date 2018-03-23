@@ -1,6 +1,7 @@
 package com.denisimusit.fragment;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,7 +10,7 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_wide);
+        setContentView(R.layout.activity_main);
     }
 
 
@@ -22,8 +23,17 @@ public class MainActivity extends AppCompatActivity implements Fragment1.OnSelec
         // Получаем ссылку на второй фрагмент по ID
         Fragment2 fragment2 = (Fragment2) fragmentManager.findFragmentById(R.id.fragment2);
 
-        // Выводим нужную информацию
-        if (fragment2 != null)
+// если фрагмента не существует или он невидим
+        if (fragment2 == null || !fragment2.isVisible()) {
+            // запускаем активность
+            Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("buttonIndex", buttonIndex);
+            startActivity(intent);
+        } else {
+            // Выводим нужную информацию
             fragment2.setDescription(buttonIndex);
+
+
+        }
     }
 }
